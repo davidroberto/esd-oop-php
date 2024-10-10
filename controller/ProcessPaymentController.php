@@ -1,7 +1,7 @@
 <?php
 
 require_once './model/entity/Order.php'; 
-require_once './model/entity/OrderRepository.php';
+require_once './model/repository/OrderRepository.php';
 
 class ProcessPaymentController
 {
@@ -21,7 +21,7 @@ class ProcessPaymentController
 			$order->pay();
 			$orderRepository->persist($order);
 			require_once './view/paid.php';
-			
+
 		} catch (Exception $e) {
 			$errorMessage = $e->getMessage();
 			require_once './view/order-error.php';

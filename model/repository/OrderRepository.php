@@ -1,6 +1,6 @@
 <?php
 
-require_once '../entity/Order.php';
+require_once './model/entity/Order.php';
 
 
 class OrderRepository {
