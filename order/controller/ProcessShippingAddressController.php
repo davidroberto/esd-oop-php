@@ -1,28 +1,30 @@
 <?php
 
-require_once './model/entity/Order.php'; 
+require_once './order/model/entity/Order.php'; 
+require_once './order/model/repository/OrderRepository.php';
 
 class ProcessShippingAddressController
 {
     public function processShippingAddress()
     {
-        session_start();
+       
+        $orderRepository = new OrderRepository();
+        $order = $orderRepository->find();
 
-        if (!isset($_SESSION['order'])) {
-            require_once './view/404.php';
+        if (!$order) {
+            require_once './order/view/404.php';
             return;
         }
 
         try {
-            $order = $_SESSION['order'];
-
+            
             if (!isset($_POST['shippingCountry']) || 
                 !isset($_POST['shippingCity']) || 
                 !isset($_POST['shippingAddress'])
             ) {
                 $errorMessage = "Merci de remplir les champs. J'ai pas fait tout ça pour rien.";
                 
-                require_once './view/order-error.php';
+                require_once './order/view/order-error.php';
                 return;
             }
 
@@ -32,13 +34,13 @@ class ProcessShippingAddressController
 
             $order->setShippingAddress($shippingAddress, $shippingCity, $shippingCountry);
 
-            $_SESSION['order'] = $order;
+            $orderRepository->persist($order);
 
-            require_once './view/shipping-address-added.php';
+            require_once './order/view/shipping-address-added.php';
 
         } catch (Exception $e) {
             $errorMessage = $e->getMessage();
-            require_once './view/order-error.php';
+            require_once './order/view/order-error.php';
         }
     }
 }

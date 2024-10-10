@@ -1,13 +1,13 @@
 <?php
 
-require_once('./controller/IndexController.php');
-require_once('./controller/ProcessOrderCreateController.php');
-require_once('./controller/PayController.php');
-require_once('./controller/ProcessPaymentController.php');
-require_once('./controller/ProcessShippingAddressController.php');
-require_once('./controller/ProcessShippingMethodController.php');
-require_once('./controller/SetShippingAddressController.php');
-require_once('./controller/SetShippingMethodController.php');
+require_once('./order/controller/IndexController.php');
+require_once('./order/controller/ProcessOrderCreateController.php');
+require_once('./order/controller/PayController.php');
+require_once('./order/controller/ProcessPaymentController.php');
+require_once('./order/controller/ProcessShippingAddressController.php');
+require_once('./order/controller/ProcessShippingMethodController.php');
+require_once('./order/controller/SetShippingAddressController.php');
+require_once('./order/controller/SetShippingMethodController.php');
 
 // Récupère l'url actuelle et supprime le chemin de base
 // c'est à dire : http://localhost:8888/esd-oop-php/public/
